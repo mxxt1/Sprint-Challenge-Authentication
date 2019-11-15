@@ -18,9 +18,6 @@ beforeAll((done) => {
 });
 
 
-
-
-
 //confirm test environment
 
 it("should set up the testing environment", () => {
@@ -61,6 +58,18 @@ describe("server.js", () => {
                 expect(result.status).toBe(201);
             });
         });//post for 201
+
+        it("should return json on successful post",  () => {
+            request(server)
+           .post('/api/auth/register')
+           .send({
+               "username":"test",
+               "password":"password"
+           })
+           .then(result => {
+               expect(result.type).toMatch(/json/i);
+           });
+       });
     });//describe post register
 
     describe("POST /api/auth/login", () => {
@@ -76,6 +85,19 @@ describe("server.js", () => {
                 expect(result.status).toBe(200);
             });
         });//return 200 on login
+
+        it("should return json on successful login", () => {
+            request(server)
+            .post('/api/auth/login')
+            .send({
+                "username":"test",
+                "password":"password"
+            })
+            .then(result => {
+                console.log(result)
+                expect(result.type).toMatch(/json/i);
+            });
+        });
     });//describe post login
 
     describe("GET /api/jokes", () => {
@@ -89,7 +111,18 @@ describe("server.js", () => {
             .then(result => {
                 expect(result.status).toBe(200);
             });
-        });//return 200 
+        });//return 200
+        
+        it("should return json object", () => {
+            request(server)
+            .post('/api/auth/login')
+            .send({
+                "authorization":token
+            })
+            .then(result => {
+                expect(result.type).toMatch(/json/i);
+            });
+        });
     });//describe get jokes
 
 });//describe server.js

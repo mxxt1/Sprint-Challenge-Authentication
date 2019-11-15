@@ -16,7 +16,7 @@ function getAll(){
 //findBy
 
 function findBy(filter){
-    return db('users').where(filter);
+    return db('users').where(filter).first();
 }
 
 
