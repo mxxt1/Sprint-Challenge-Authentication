@@ -21,6 +21,6 @@ module.exports = (req, res, next) => {
       }
     });
   } else {
-    res.status(401).json({ you: 'User is not authorized to access this resource' });
+    res.status(401).json({ error: 'User is not authorized to access this resource' });
   }
 };
