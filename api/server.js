@@ -16,7 +16,7 @@ server.use('/api/auth', authRouter);
 server.use('/api/jokes', authenticate, jokesRouter);
 
 server.get("/", (req, res) => {
-    res.status(200).json({ api: "up", environment: process.env.DB_ENV });
+    res.status(200).json({ message: "api running", environment: process.env.DB_ENV });
   });
 
 module.exports = server;
