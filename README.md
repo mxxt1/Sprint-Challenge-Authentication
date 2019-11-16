@@ -16,12 +16,12 @@ The Minimum Viable Product must be completed in three hours.
 
 Follow these steps to set up and work on your project:
 
-- [ ] Create a forked copy of this project.
-- [ ] Add your _Team Lead_ as collaborator on Github.
-- [ ] Clone your forked version of the Repository.
-- [ ] Create a new Branch on the clone: git checkout -b `firstName-lastName`.
-- [ ] Implement the project on this Branch, committing changes regularly.
-- [ ] Push commits: git push origin `firstName-lastName`.
+- [x] Create a forked copy of this project.
+- [x] Add your _Team Lead_ as collaborator on Github.
+- [x] Clone your forked version of the Repository.
+- [x] Create a new Branch on the clone: git checkout -b `firstName-lastName`.
+- [x] Implement the project on this Branch, committing changes regularly.
+- [x] Push commits: git push origin `firstName-lastName`.
 
 Follow these steps for completing your project.
 
@@ -34,17 +34,26 @@ Follow these steps for completing your project.
 
 Commit your code regularly and use descriptive messages. This helps both you (in case you ever need to return to old code) and your Team Lead.
 
-## Self-Study/Essay Questions
+## Self-Study/Essay Questions -- do last
 
 Demonstrate your understanding of this week's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] What is the purpose of using _sessions_?
 
+    Sessions allow for data to be persisted by allowing the server to store certain information about the client. HTTP is stateless, and therefore without sessions, there is no way to persist data (such as authorization). Sessions allow the server to attribute/link a series of http requests to the same client, instead of having to reauthenticate the client with each request.  
+
 - [ ] What does bcrypt do to help us store passwords in a secure manner.
+
+    bcrypt hashes the plaintext password using a secret key before writing to the database, so that the database is never storing passwords in plaintext. This means the database only ever stores a hashed abstraction of the actual password, and not the actual password.
 
 - [ ] What does bcrypt do to slow down attackers?
 
+    Because hashing is unidirectional, the secret key and the plain text password would both need to be known in order to decipher the hash. If an attacker dumps the database, they only have access to the hash. If they are somehow able to also gain access to the secret key, they would still need to brute force/dictionary/rainbow table attack with the secret to figure out the hash (because the hash from plaintext+secret key will always be unique). This means they'd literally have to hash every combination of characters with the secret to try to find the combination of characters that would produce the hash stored in the database. It's possible, but resource intensive and slow.
+
 - [ ] What are the three parts of the JSON Web Token?
+
+    The three parts of a JWT are the header, the payload, and the signature. The header indicates the token algorithm and token type. The payload holds the data/claims that are being transmitted in the token, like username, id/subject, timestamp, etc. The signature validates the token and is generated using the encoded header and encoded payload and a secret key. Because the secret is server-side, the server is able to verify the signature.
+
 
 ## Minimum Viable Product
 
